@@ -1,0 +1,7 @@
+.DS_Store
+.env
+proxies.txt
+error.log
+*.html
+node_modules
+*.png
