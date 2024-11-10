@@ -37,7 +37,6 @@ async function randomUserAgent() {
 const extensionId = "caacbgbklghmpodbdafajbgdnegacfmo";
 const CRX_URL = `https://clients2.google.com/service/update2/crx?response=redirect&prodversion=98.0.4758.102&acceptformat=crx2,crx3&x=id%3D${extensionId}%26uc&nacl_arch=x86-64`;
 const USER_AGENT = await randomUserAgent();
-
 const USER = process.env.APP_USER || ""
 const PASSWORD = process.env.APP_PASS || ""
 const ALLOW_DEBUG = !!process.env.DEBUG?.length || false
@@ -178,7 +177,7 @@ async function getDriverOptions() {
     const url = new URL(newProxyUrl)
     console.log("-> Proxy host:", url.hostname)
     console.log("-> Proxy port:", url.port)
-    options.addArguments(`--proxy-server=${newProxyUrl}`)
+    options.addArguments(`--proxy-server=socks5://${url.hostname}:${url.port}`)
     console.log("-> Setting up proxy done!")
   } else {
     console.log("-> No proxy set!")
